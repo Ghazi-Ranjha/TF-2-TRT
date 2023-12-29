@@ -17,7 +17,7 @@ Before running the script, ensure you have the following dependencies installed:
 
 ### Google Colab
 
-If you prefer running the script in Google Colab, you can use the provided Colab notebook [here](link-to-colab-notebook). Follow the instructions in the notebook to perform the conversion.
+the script in Google Colab, you can use the provided .ipynb or .py files. [here](link-to-colab-notebook).
 
 ### Local Environment
 
