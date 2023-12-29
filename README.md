@@ -23,8 +23,7 @@ The script in Google Colab, you can use the provided .ipynb or .py files. [here]
 
 TF-TRT performs several important transformations and optimizations to the neural network graph. Layers with unused outputs are eliminated to avoid unnecessary computation. Additionally, convolution, bias, and ReLU layers are fused where possible to form a single layer, improving overall efficiency.
 
-### Source:
-[Speed up TensorFlow Inference on GPUs with TensorRT](https://blog.tensorflow.org/2018/04/speed-up-tensorflow-inference-on-gpus-tensorRT.html)
+### Source:[Speed up TensorFlow Inference on GPUs with TensorRT](https://blog.tensorflow.org/2018/04/speed-up-tensorflow-inference-on-gpus-tensorRT.html)
 
 <div align="center">
     <img width="700px" src='https://2.bp.blogspot.com/-nc-poLV8CNc/XhOI1wfgGjI/AAAAAAAACQI/3FlNTSKKrqMyTzR5XC5RCNnVuUY5EGmhQCLcBGAsYHQ/s1600/fig2.png' />
@@ -38,8 +37,7 @@ Please refer to the [TF-TRT User Guide](https://docs.nvidia.com/deeplearning/fra
 
 Below, you can see a typical workflow of TF-TRT:
 
-### Source:
-[High performance inference with TensorRT Integration](https://medium.com/tensorflow/high-performance-inference-with-tensorrt-integration-c4d78795fbfe)
+### Source:[High performance inference with TensorRT Integration](https://medium.com/tensorflow/high-performance-inference-with-tensorrt-integration-c4d78795fbfe)
 
 <div align="center">
     <img width="600px" src='https://miro.medium.com/max/875/1*hD_4k9bTEXnjuLHcaoFQRQ.png' />
@@ -66,6 +64,17 @@ trt.TrtGraphConverterV2(
                                           rewriter_config_template=None,
                                          )
 
+### Conversion Parameters
+
+Here is additional information about the most frequently adjusted conversion parameters.
+
+* __precision_mode__: This parameter sets the precision mode; which can be one of FP32, FP16, or INT8. Precision lower than FP32, meaning FP16 and INT8, would improve the performance of inference. The FP16 mode uses Tensor Cores or half precision hardware instructions, if possible. The INT8 precision mode uses integer hardware instructions.
+
+* __max_batch_size__: This parameter is the maximum batch size for which TF-TRT will optimize. At runtime, a smaller batch size may be chosen, but, not a larger one.
+
+* __minimum_segment_size__: This parameter determines the minimum number of TensorFlow nodes in a TF-TRT engine, which means the TensorFlow subgraphs that have fewer nodes than this number will not be converted to TensorRT. Therefore, in general, smaller numbers such as 5 are preferred. This can also be used to change the minimum number of nodes in the optimized INT8 engines to change the final optimized graph to fine tune result accuracy.
+
+* __max_workspace_size_bytes__: TF-TRT operators often require temporary workspace. This parameter limits the maximum size that any layer in the network can use. If insufficient scratch is provided, it is possible that TF-TRT may not be able to find an implementation for a given layer.
 
 ## Model and Data
 
