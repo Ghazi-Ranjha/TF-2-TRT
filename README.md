@@ -17,29 +17,55 @@ Before running the script, ensure you have the following dependencies installed:
 
 ### Google Colab
 
-the script in Google Colab, you can use the provided .ipynb or .py files. [here](link-to-colab-notebook).
+The script in Google Colab, you can use the provided .ipynb or .py files. [here](link-to-colab-notebook).
 
-### Local Environment
+## Network Transformation
 
-1. Clone the repository:
+TF-TRT performs several important transformations and optimizations to the neural network graph. Layers with unused outputs are eliminated to avoid unnecessary computation. Additionally, convolution, bias, and ReLU layers are fused where possible to form a single layer, improving overall efficiency.
 
-    ```bash
-    git clone https://github.com/Ghazi-Ranjha/TF-2-TRT.git
-    ```
+### Source:
+[Speed up TensorFlow Inference on GPUs with TensorRT](https://blog.tensorflow.org/2018/04/speed-up-tensorflow-inference-on-gpus-tensorRT.html)
 
-2. Navigate to the repository:
+<div align="center">
+    <img width="700px" src='https://2.bp.blogspot.com/-nc-poLV8CNc/XhOI1wfgGjI/AAAAAAAACQI/3FlNTSKKrqMyTzR5XC5RCNnVuUY5EGmhQCLcBGAsYHQ/s1600/fig2.png' />
+    <p style="text-align: center;color:gray">Figure (a): An example convolutional model with multiple convolutional and activation layers before optimization</p>
+    <p style="text-align: center;color:gray">Figure (c): Horizontal layer fusion</p>
+</div>
 
-    ```bash
-    cd TF-2-TRT
-    ```
+Please refer to the [TF-TRT User Guide](https://docs.nvidia.com/deeplearning/frameworks/tf-trt-user-guide/index.html#supported-ops) for a comprehensive list of supported operators.
 
-3. Run the script:
+## TF-TRT Workflow
 
-    ```bash
-    python convert_to_tensorrt.py
-    ```
+Below, you can see a typical workflow of TF-TRT:
 
-4. Follow the instructions in the script to choose the precision mode and perform the conversion.
+### Source:
+[High performance inference with TensorRT Integration](https://medium.com/tensorflow/high-performance-inference-with-tensorrt-integration-c4d78795fbfe)
+
+<div align="center">
+    <img width="600px" src='https://miro.medium.com/max/875/1*hD_4k9bTEXnjuLHcaoFQRQ.png' />
+</div>
+
+<div align="center">
+    <img width="600px" src='https://miro.medium.com/max/875/1*DwxO-QF6Bz-H4aurRBIrjw.png' />
+</div>
+
+To perform graph conversion, we use `TrtGraphConverterV2`, passing it the directory of a saved model, and any updates we wish to make to its conversion parameters.
+
+```python
+from tensorflow.python.compiler.tensorrt import trt_convert as trt
+
+trt.TrtGraphConverterV2(
+    input_saved_model_dir=None,
+    conversion_params=TrtConversionParams(precision_mode='FP32',
+                                          max_batch_size=1
+                                          minimum_segment_size=3,
+                                          max_workspace_size_bytes=8000000000,
+                                          use_calibration=True,
+                                          maximum_cached_engines=1,
+                                          is_dynamic_op=True,
+                                          rewriter_config_template=None,
+                                         )
+
 
 ## Model and Data
 
