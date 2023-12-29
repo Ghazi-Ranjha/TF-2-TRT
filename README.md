@@ -89,10 +89,10 @@ The script benchmarks the performance of the optimized models in terms of throug
 
 | Model          | Avg. Time | Throughput       | Accuracy   |
 | -------------- | --------- | ---------------- | ---------- |
-| TF model       | 72.5 ms   | 438 images/s     | 0.6146077  |
-| TRT-Float32    | 57.6 ms   | 556 images/s     | 0.61460805 |
-| TRT-Float16    | 32.4 ms   | 987 images/s     | 0.61481947 |
-| TRT-INT8       | 35.4 ms   | 904 images/s     |  0.6143656 |
+| TF model       | 105.2 ms  | 299 images/s     | 0.72234565 |
+| TRT-Float32    | 57.6 ms   | 556 images/s     | 0.7212456  |
+| TRT-Float16    | 26.2 ms   | 1250 images/s    | 0.7205212  |
+| TRT-INT8       | 16.8 ms   | 1806 images/s    | 0.7239516  |
 
 ## Folder Structure
 
