@@ -17,7 +17,7 @@ Before running the script, ensure you have the following dependencies installed:
 
 ### Google Colab
 
-For running the script in Google Colab, you can use the provided .ipynb or .py files. [Link to Colab Notebook](link-to-colab-notebook).
+For running the script in Google Colab, you can use the provided .ipynb or .py files. [Here](https://github.com/Ghazi-Ranjha/TF-2-TRT/tree/main/Script).
 
 ## Network Transformation
 
