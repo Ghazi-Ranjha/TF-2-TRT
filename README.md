@@ -54,7 +54,7 @@ from tensorflow.python.compiler.tensorrt import trt_convert as trt
 
 trt.TrtGraphConverterV2(
     input_saved_model_dir=None,
-    conversion_params=TrtConversionParams(precision_mode='FP32',
+    conversion_params=TrtConversionParams(precision_mode='FP32',       # use mode = 'FP16' or 'INT8' for convertion in Float 16 or INT 8 respectively.
                                           max_batch_size=1,
                                           minimum_segment_size=3,
                                           max_workspace_size_bytes=8000000000,
