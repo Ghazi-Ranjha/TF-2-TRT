@@ -102,9 +102,6 @@ The script benchmarks the performance of the optimized models in terms of throug
 - `inceptionv3_saved_model_TFTRT_FP16`: TF-TRT optimized model in float16 precision.
 - `inceptionv3_saved_model_TFTRT_INT8`: TF-TRT optimized model in int8 precision.
 
-## License
-
-This project is licensed under the MIT License.
 
 ## Acknowledgments
 
