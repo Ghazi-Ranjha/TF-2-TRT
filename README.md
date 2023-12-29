@@ -85,6 +85,15 @@ The script uses the InceptionV3 model pre-trained on ImageNet. Sample images are
 
 The script benchmarks the performance of the optimized models in terms of throughput and provides comparisons between different precision modes.
 
+### Model Performance Comparison
+
+| Model          | Avg. Time | Throughput       | Accuracy   |
+| -------------- | --------- | ---------------- | ---------- |
+| TF model       | 72.5 ms   | 438 images/s     | 0.6146077  |
+| TRT-Float32    | 57.6 ms   | 556 images/s     | 0.61460805 |
+| TRT-Float16    | 32.4 ms   | 987 images/s     | 0.61481947 |
+| TRT-INT8       | 35.4 ms   | 904 images/s     |  0.6143656 |
+
 ## Folder Structure
 
 - `data`: Contains sample images for testing.
